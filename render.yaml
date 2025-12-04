@@ -6,12 +6,10 @@ services:
     plan: free
     branch: main
     buildCommand: pip install -r requirements.txt
-    startCommand: python Spare_Ageing_Render.py
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.0
-      - key: PORT
-        value: 8000
+        value: 3.12.7
     numInstances: 1
     healthCheckPath: /
     autoDeploy: true
