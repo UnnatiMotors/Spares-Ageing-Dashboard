@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: spare-parts-ageing-dashboard
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: python Spare_Ageing_Render.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: PORT
+        value: 8000
+    numInstances: 1
+    healthCheckPath: /
+    autoDeploy: true
