@@ -1812,9 +1812,16 @@ async def download_last_month_liquidation_csv(
     return FileResponse(path=output_path, filename=filename, media_type='text/csv')
 
 if __name__ == "__main__":
+    import os
+    
+    # Get port from environment variable (Render) or use 8004 for local
+    port = int(os.environ.get("PORT", 8004))
+    
     hostname = socket.gethostname()
-    local_ip = socket.gethostbyname(hostname)
-    port = 8004
+    try:
+        local_ip = socket.gethostbyname(hostname)
+    except:
+        local_ip = "localhost"
     
     print("\n" + "=" * 70)
     print(f"✅ Server ready! Access the dashboard at:")
